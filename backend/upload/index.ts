@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import uploadRouter from './routes/upload.route';
+import kafkaPublisherRouter from './routes/kafka-publisher.route';
 
 const port = process.env.PORT || 8000;
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use('/upload', uploadRouter);
+app.use('/publish', kafkaPublisherRouter);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello Upload Service!');

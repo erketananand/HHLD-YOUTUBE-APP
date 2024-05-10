@@ -264,3 +264,4 @@ const completeMultipartUpload = (req, res) => __awaiter(void 0, void 0, void 0, 
     }
 });
 exports.completeMultipartUpload = completeMultipartUpload;
+//# sourceMappingURL=upload.controller.js.map

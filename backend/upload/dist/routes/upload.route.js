@@ -16,3 +16,4 @@ router.post('/initializeMultipartUploadFromUi', upload.none(), upload_controller
 router.post('/multipartChunkUploadFromUi', upload.single('chunk'), upload_controller_1.multipartChunkUpload);
 router.post('/completeMultipartUploadFromUi', upload_controller_1.completeMultipartUpload);
 exports.default = router;
+//# sourceMappingURL=upload.route.js.map

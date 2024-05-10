@@ -4,24 +4,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const upload_route_1 = __importDefault(require("./routes/upload.route"));
-const kafka_publisher_route_1 = __importDefault(require("./routes/kafka-publisher.route"));
-const port = process.env.PORT || 8000;
+const cors_1 = __importDefault(require("cors"));
+const kafka_consumer_controller_1 = require("./controllers/kafka-consumer.controller");
 dotenv_1.default.config();
+const port = process.env.PORT || 8002;
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     allowedHeaders: ["*"],
-    origin: "*",
+    origin: "*"
 }));
 app.use(express_1.default.json());
-app.use('/upload', upload_route_1.default);
-app.use('/publish', kafka_publisher_route_1.default);
 app.get('/', (req, res) => {
-    res.send('Hello Upload Service!');
+    res.send('HHLD YouTube Transcoder Service');
 });
 app.listen(port, () => {
-    console.log(`Upload Service is running on port ${port}`);
+    console.log(`Server is listening at http://localhost:${port}`);
 });
+(0, kafka_consumer_controller_1.sendMessageToKafka)();
 //# sourceMappingURL=index.js.map
