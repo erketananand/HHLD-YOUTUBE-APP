@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendMessageToKafka = void 0;
 const kafka_utils_1 = __importDefault(require("../utils/kafka.utils"));
 const sendMessageToKafka = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("got here in upload service...");
     try {
         const message = req.body;
         console.log("body : ", message);
@@ -27,7 +26,6 @@ const sendMessageToKafka = (req, res) => __awaiter(void 0, void 0, void 0, funct
             }
         ];
         const result = yield kafkaconfig.produce(process.env.KAFKA_PRODUCER_TOPIC, msgs);
-        console.log("result of produce : ", result);
         res.status(200).json("message uploaded successfully");
     }
     catch (error) {

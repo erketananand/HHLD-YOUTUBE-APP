@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const multer_1 = __importDefault(require("multer"));
 const upload_controller_1 = require("../controllers/upload.controller");
+const db_controller_1 = require("../controllers/db.controller");
 const upload = (0, multer_1.default)();
 const router = express_1.default.Router();
 router.post('/directUploadFromPostman', upload_controller_1.uploadFileToS3ViaPostman); // Upload a file directly from Postman
@@ -15,5 +16,6 @@ router.post('/multipartUploadToS3ViaPostman', upload_controller_1.multipartUploa
 router.post('/initializeMultipartUploadFromUi', upload.none(), upload_controller_1.initializeMultipartUpload);
 router.post('/multipartChunkUploadFromUi', upload.single('chunk'), upload_controller_1.multipartChunkUpload);
 router.post('/completeMultipartUploadFromUi', upload_controller_1.completeMultipartUpload);
+router.post('/videoMetadata', db_controller_1.DbController.uploadToDb);
 exports.default = router;
 //# sourceMappingURL=upload.route.js.map

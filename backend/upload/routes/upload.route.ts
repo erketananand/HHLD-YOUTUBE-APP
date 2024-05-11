@@ -1,6 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import { uploadFileToS3ViaPostman, uploadFileToS3ViaMulter, uploadFileToS3InChunkViaMulter, multipartUploadToS3ViaPostman, initializeMultipartUpload, multipartChunkUpload, completeMultipartUpload} from '../controllers/upload.controller';
+import { DbController } from '../controllers/db.controller';
 
 const upload = multer();
 const router = express.Router();
@@ -13,5 +14,7 @@ router.post('/multipartUploadToS3ViaPostman', multipartUploadToS3ViaPostman); //
 router.post('/initializeMultipartUploadFromUi', upload.none(), initializeMultipartUpload);
 router.post('/multipartChunkUploadFromUi', upload.single('chunk'), multipartChunkUpload);
 router.post('/completeMultipartUploadFromUi', completeMultipartUpload);
+
+router.post('/videoMetadata', DbController.uploadToDb);
 
 export default router;

@@ -35,8 +35,7 @@ class KafkaConfig {
     produce(topic, messages) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const result = yield this.producer.connect();
-                console.log("kafka connected... : ", result);
+                yield this.producer.connect();
                 yield this.producer.send({
                     topic: topic,
                     messages: messages
