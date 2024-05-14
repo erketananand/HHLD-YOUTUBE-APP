@@ -1,9 +1,8 @@
-import UploadForm from "../../src/app/_components/upload/uploadForm";
+import UploadForm from "@/app/_components/uploadForm";
 
 const Upload = () => {
  return (
    <div className='m-10'>
-     <h3>HHLD YouTube - Upload Page</h3>
      <UploadForm/>
    </div>
  );

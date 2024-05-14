@@ -1,8 +1,7 @@
-import VideoPlayer from "./_components/videoPlayer/videoPlayer";
+import YouTubeHome from "./_components/youtubeHome/youtubeHome";
 
 export default function Home() {
   return (
-    <VideoPlayer />
-    // <UploadPage />
+    <YouTubeHome />
   );
 }

@@ -1,6 +1,7 @@
 import { S3 } from 'aws-sdk';
 import fs from 'fs';
 import { Request, Response } from 'express';
+import { Db } from '../db/db';
 
 export const uploadFileToS3ViaPostman = async (req: Request, res: Response) => {
     const { path, filename } = req.body;
@@ -226,7 +227,7 @@ export const initializeMultipartUpload = async (req: Request, res: Response) => 
  export const completeMultipartUpload = async (req: Request, res: Response) => {
     try {
         console.log('Completing Upload');
-        const { filename, totalChunks, uploadId } = req.body;
+        const { filename, totalChunks, uploadId, title, description, author } = req.body;
         const uploadedParts = [];
  
         // Build uploadedParts array from request body
@@ -263,6 +264,14 @@ export const initializeMultipartUpload = async (req: Request, res: Response) => 
         const uploadResult = await s3.completeMultipartUpload(completeParams).promise();
  
         console.log("data----- ", uploadResult);
+
+        console.log("Updating data in DB");
+        
+        
+        const url = uploadResult.Location as string;
+        console.log("Video uploaded at ", url);
+        
+        await Db.addVideoDetailsToDB(title, description, author, url); 
         return res.status(200).json({ message: "Uploaded successfully!!!" });
  
     } catch (error) {
